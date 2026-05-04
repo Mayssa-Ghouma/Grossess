@@ -1,0 +1,39 @@
+<div class="page-container">
+  <div class="header">
+    <h1>Hospital Bag</h1>
+    <p>Tout ce dont vous avez besoin pour le grand jour</p>
+  </div>
+
+  <div class="card progress-card">
+    <div class="prog-header">
+      <span>Progression globale</span>
+      <span>{{ getTotalPacked() }}/{{ getTotalItems() }}</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="(getTotalPacked()/getTotalItems())*100"></div>
+    </div>
+  </div>
+
+  <div class="saved-msg" *ngIf="saved">✅ Sac sauvegardé !</div>
+
+  <div class="tabs">
+    <button [class.active]="tab==='maman'" (click)="tab='maman'">👩 Maman</button>
+    <button [class.active]="tab==='baby'"  (click)="tab='baby'">👶 Bébé</button>
+    <button [class.active]="tab==='papa'"  (click)="tab='papa'">👨 Papa</button>
+  </div>
+
+  <div class="packed-count">{{ getTabPacked() }}/{{ getTabItems() }} préparés</div>
+
+  <div class="items-list">
+    <div class="bag-item card" *ngFor="let item of getCurrentItems()" (click)="item.v = !item.v">
+      <div class="chk" [class.checked]="item.v">
+        <span *ngIf="item.v">✓</span>
+      </div>
+      <span [class.done]="item.v">{{ item.label }}</span>
+    </div>
+  </div>
+
+  <div class="footer-actions">
+    <button class="btn-save" (click)="save()">💾 Sauvegarder</button>
+  </div>
+</div>

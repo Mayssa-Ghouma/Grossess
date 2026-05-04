@@ -1,0 +1,170 @@
+.home {
+  padding: 40px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Hero */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 40px;
+}
+
+.hero-left { 
+  flex: 1; 
+}
+
+.week-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid #e8e0e3;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7a7a7a;
+  margin-bottom: 20px;
+}
+
+h1 { 
+  font-size: 52px; 
+  color: #2d2d2d; 
+  margin-bottom: 16px; 
+}
+
+.pink { 
+  color: #e8698a; 
+}
+
+.baby-size { 
+  font-size: 16px; 
+  color: #7a7a7a; 
+  margin-bottom: 28px; 
+}
+
+/* Due card */
+.due-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 380px;
+  box-shadow: 0 4px 20px rgba(232, 105, 138, 0.1);
+}
+
+.due-col { 
+  text-align: center; 
+}
+
+.big-num { 
+  font-size: 36px; 
+  font-weight: 700; 
+  color: #2d2d2d; 
+}
+
+.lbl { 
+  font-size: 13px; 
+  color: #7a7a7a; 
+}
+
+.sep { 
+  width: 1px; 
+  height: 50px; 
+  background: #e8e0e3; 
+}
+
+.due-info { 
+  flex: 1; 
+  padding-left: 10px; 
+}
+
+.due-lbl { 
+  font-size: 13px; 
+  color: #7a7a7a; 
+}
+
+.due-date { 
+  font-size: 18px; 
+  font-weight: 700; 
+  color: #2d2d2d; 
+}
+
+/* Hero image */
+.circle {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #fce8ef, #f5e8f0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* important */
+  margin: 0 auto;
+}
+
+.circle img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; /* image bien remplie */
+}
+
+/* Quick nav */
+.quick-nav {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  flex: 1;
+  min-width: 190px;
+  background: white;
+  border-radius: 24px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(232, 105, 138, 0.2);
+}
+
+/* ICON BOX FIX */
+.icon-box {
+  width: 90px;
+  height: 90px;
+  background: #fce8ef;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* empêche débordement */
+}
+
+/* IMAGE FIX (IMPORTANT) */
+.icon-box img {
+  width: 75%;        /* taille propre */
+  height: 75%;
+  object-fit: contain; /* garde toute l'image */
+}
+
+/* Texte */
+.nav-item span { 
+  font-size: 18px; 
+  font-weight: 700; 
+  color: #7a7a7a; 
+}

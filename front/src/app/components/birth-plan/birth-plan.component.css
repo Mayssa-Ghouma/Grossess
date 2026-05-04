@@ -1,0 +1,92 @@
+.page-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+.header { text-align: center; margin-bottom: 36px; }
+.header h1 { font-size: 36px; color: #2d2d2d; margin-bottom: 8px; }
+.header p  { color: #7a7a7a; font-size: 15px; }
+
+/* Progress */
+.progress-card { margin-bottom: 24px; padding: 24px 28px; }
+
+.prog-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.progress-bar { height: 8px; background: #f0e8ec; border-radius: 50px; overflow: hidden; }
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e8698a, #c94d6d);
+  border-radius: 50px;
+  transition: width 0.4s;
+}
+
+/* Saved message */
+.saved-msg {
+  background: #e8f5e9;
+  color: #388e3c;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* Preferences list */
+.prefs-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+
+.pref-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+}
+
+.pref-name { font-size: 16px; font-weight: 700; color: #2d2d2d; margin-bottom: 4px; }
+.pref-desc { font-size: 13px; color: #7a7a7a; }
+
+.pref-btns { display: flex; gap: 10px; }
+
+.btn-yes, .btn-no {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #e8e0e3;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  color: #7a7a7a;
+  transition: all 0.2s;
+}
+
+.btn-yes.sel { border-color: #4caf50; color: #4caf50; background: #e8f5e9; }
+.btn-no.sel  { border-color: #e8698a; color: #e8698a; background: #fce8ef; }
+
+/* Footer */
+.footer-actions { display: flex; gap: 16px; justify-content: center; }
+
+.btn-save {
+  padding: 16px 48px;
+  background: linear-gradient(135deg, #e8698a, #c94d6d);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-share {
+  padding: 16px 48px;
+  background: white;
+  color: #2d2d2d;
+  border: 2px solid #e8e0e3;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.card { background: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(232, 105, 138, 0.08); }

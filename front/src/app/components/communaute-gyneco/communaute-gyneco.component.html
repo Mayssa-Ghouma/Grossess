@@ -1,0 +1,98 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Communauté</h1>
+    <button class="btn-new" (click)="showPostForm=!showPostForm">
+      {{ showPostForm ? '✕ Annuler' : '+ Publier' }}
+    </button>
+  </div>
+
+  <!-- Formulaire nouveau post -->
+  <div class="card form-card" *ngIf="showPostForm">
+    <h3>Publier un post</h3>
+    <input class="form-input" [(ngModel)]="newPost.titre" placeholder="Titre du post" />
+    <textarea class="form-textarea" [(ngModel)]="newPost.contenu" rows="4" placeholder="Partagez votre expertise..."></textarea>
+    <div class="type-btns">
+      <button [class.active]="newPost.type==='GENERAL'" (click)="newPost.type='GENERAL'">Général</button>
+      <button [class.active]="newPost.type==='CONSEIL'" (click)="newPost.type='CONSEIL'">Conseil</button>
+    </div>
+    <button class="btn-submit" (click)="publishPost()">Publier</button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button [class.active]="tab==='posts'"     (click)="tab='posts';loadPosts()"> Tous les Posts</button>
+    <button [class.active]="tab==='questions'" (click)="tab='questions';loadAllQuestions()">❓ Questions Mamans</button>
+  </div>
+
+  <!-- POSTS -->
+  <div *ngIf="tab==='posts'">
+    <div class="filter-tabs">
+      <button [class.active]="filter==='tous'"    (click)="filter='tous'">Tout</button>
+      <button [class.active]="filter==='GENERAL'" (click)="filter='GENERAL'">Général</button>
+      <button [class.active]="filter==='CONSEIL'" (click)="filter='CONSEIL'">Conseil</button>
+    </div>
+
+    <div *ngIf="filteredPosts().length===0" class="empty">Aucun post publié pour l'instant.</div>
+
+    <div class="post-card card" *ngFor="let p of filteredPosts()">
+      <div class="post-top">
+        <div class="author-row">
+          <div class="avatar">{{ (p.gynecologue?.nomComplet || 'D')[0] }}</div>
+          <div>
+            <div class="author">
+              Dr. {{ p.gynecologue?.nomComplet || 'Gynécologue' }}
+              <span class="my-badge" *ngIf="p.gynecologue?.id === gynecoId">Mon post</span>
+            </div>
+            <div class="date">{{ formatDate(p.datePublication) }}</div>
+          </div>
+        </div>
+        <span class="badge" [class.conseil]="p.type==='CONSEIL'">{{ p.type }}</span>
+      </div>
+      <h3 class="post-title">{{ p.titre }}</h3>
+      <p class="post-content">{{ p.contenu }}</p>
+    </div>
+  </div>
+
+  <!-- QUESTIONS MAMANS -->
+  <div *ngIf="tab==='questions'">
+    <div *ngIf="questions.length===0" class="empty">Aucune question pour l'instant.</div>
+
+    <div class="q-card card" *ngFor="let q of questions">
+      <div class="q-header">
+        <div class="q-avatar">{{ (q.futureMaman?.nomComplet || 'M')[0] }}</div>
+        <div>
+          <div class="q-author">{{ q.futureMaman?.nomComplet || 'Future Maman' }}</div>
+          <div class="q-date">{{ formatDate(q.dateQuestion) }}</div>
+        </div>
+      </div>
+      <p class="q-text">{{ q.question }}</p>
+
+      <!-- Commentaires existants -->
+      <div *ngIf="q.commentaires && q.commentaires.length > 0">
+        <div class="existing-reply" *ngFor="let c of q.commentaires">
+          <div class="reply-label">Dr. {{ c.gynecologue?.nomComplet || 'Gynécologue' }} a répondu :</div>
+          <p class="reply-text">{{ c.commentaire }}</p>
+          <div class="reply-date-text">{{ formatDate(c.dateCommentaire) }}</div>
+        </div>
+      </div>
+
+      <div *ngIf="!q.commentaires || q.commentaires.length === 0" class="no-reply">
+        <span>Aucune réponse pour l'instant</span>
+      </div>
+
+      <!-- Formulaire réponse -->
+      <div class="reply-section">
+        <div class="reply-form" *ngIf="replyingTo===q.id">
+          <textarea class="form-textarea small" [(ngModel)]="replyText" rows="3" placeholder="Votre réponse médicale..."></textarea>
+          <div class="reply-actions">
+            <button class="btn-reply-submit" (click)="submitReply(q)">Répondre</button>
+            <button class="btn-cancel" (click)="replyingTo=undefined">Annuler</button>
+          </div>
+        </div>
+        <button class="btn-reply-open" *ngIf="replyingTo!==q.id" (click)="replyingTo=q.id; replyText=''">
+          💬 {{ q.commentaires && q.commentaires.length > 0 ? 'Ajouter ma réponse' : 'Répondre' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

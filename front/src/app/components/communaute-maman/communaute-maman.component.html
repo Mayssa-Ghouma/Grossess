@@ -1,0 +1,78 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Communauté</h1>
+    <button class="btn-new" (click)="showQForm=!showQForm">
+      {{ showQForm ? '✕ Annuler' : '+ Ma Question' }}
+    </button>
+  </div>
+
+  <!-- Formulaire nouvelle question -->
+  <div class="card form-card" *ngIf="showQForm">
+    <h3>Poser une question au gynécologue</h3>
+    <textarea class="form-textarea" [(ngModel)]="newQuestion" rows="4" placeholder="Posez votre question ici..."></textarea>
+    <button class="btn-submit" (click)="submitQuestion()">Envoyer</button>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button [class.active]="tab==='posts'"     (click)="tab='posts';loadPosts()"> Posts Gynécologues</button>
+    <button [class.active]="tab==='questions'" (click)="tab='questions';loadQuestions()">❓ Mes Questions</button>
+  </div>
+
+  <!-- POSTS -->
+  <div *ngIf="tab==='posts'">
+    <div class="filter-tabs">
+      <button [class.active]="pf==='tous'"    (click)="pf='tous'">Tout</button>
+      <button [class.active]="pf==='GENERAL'" (click)="pf='GENERAL'">Général</button>
+      <button [class.active]="pf==='CONSEIL'" (click)="pf='CONSEIL'">Conseil</button>
+    </div>
+
+    <div *ngIf="filteredPosts().length===0" class="empty">Aucun post pour l'instant.</div>
+
+    <div class="post-card card" *ngFor="let p of filteredPosts()">
+      <div class="post-top">
+        <div class="author-row">
+          <div class="avatar">{{ (p.gynecologue?.nomComplet || 'D')[0] }}</div>
+          <div>
+            <div class="author">Dr. {{ p.gynecologue?.nomComplet || 'Gynécologue' }}</div>
+            <div class="date">{{ formatDate(p.datePublication) }}</div>
+          </div>
+        </div>
+        <span class="badge" [class.conseil]="p.type==='CONSEIL'">{{ p.type }}</span>
+      </div>
+      <h3 class="post-title">{{ p.titre }}</h3>
+      <p class="post-content">{{ p.contenu }}</p>
+      <div class="post-footer">
+      </div>
+    </div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div *ngIf="tab==='questions'">
+    <div *ngIf="questions.length===0" class="empty">Vous n'avez pas encore posé de question.</div>
+
+    <div class="q-card card" *ngFor="let q of questions">
+      <div class="q-header">
+        <div class="q-icon">❓</div>
+        <div>
+          <div class="q-date">{{ formatDate(q.dateQuestion) }}</div>
+          <div class="q-text">{{ q.question }}</div>
+        </div>
+      </div>
+
+      <div *ngIf="q.commentaires && q.commentaires.length > 0">
+        <div class="reply" *ngFor="let c of q.commentaires">
+          <div class="reply-header">
+            <strong>Dr. {{ c.gynecologue?.nomComplet || 'Gynécologue' }}</strong>
+            <span class="reply-date">{{ formatDate(c.dateCommentaire) }}</span>
+          </div>
+          <p class="reply-text">{{ c.commentaire }}</p>
+        </div>
+      </div>
+
+      <div class="no-reply" *ngIf="!q.commentaires || q.commentaires.length === 0">
+        <span>En attente de réponse...</span>
+      </div>
+    </div>
+  </div>
+</div>

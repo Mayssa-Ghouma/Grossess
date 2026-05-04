@@ -1,0 +1,28 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="logo">♥</div>
+    <h2>Connexion</h2>
+    <p class="sub">Accédez à votre espace Grossess'</p>
+
+    <div class="error-msg" *ngIf="error">{{ error }}</div>
+
+    <div class="role-row">
+      <button [class.active]="role==='maman'" (click)="role='maman'">Future Maman</button>
+      <button [class.active]="role==='gyneco'" (click)="role='gyneco'">Gynécologue</button>
+    </div>
+
+    <label>Email</label>
+    <input class="form-input" type="email" [(ngModel)]="email" placeholder="vous@exemple.com" />
+
+    <label>Mot de passe</label>
+    <input class="form-input" type="password" [(ngModel)]="password" placeholder="••••••••" style="margin-bottom:24px" />
+
+    <button class="btn-submit" (click)="login()" [disabled]="loading">
+      {{ loading ? 'Connexion...' : 'Se connecter' }}
+    </button>
+
+    <p class="link-text">
+      Pas encore de compte ? <a (click)="router.navigate(['/register'])">S'inscrire</a>
+    </p>
+  </div>
+</div>

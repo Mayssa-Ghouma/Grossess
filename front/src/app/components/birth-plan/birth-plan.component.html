@@ -1,0 +1,35 @@
+<div class="page-container">
+  <div class="header">
+    <h1>Birth Plan</h1>
+    <p>Définissez vos préférences pour le grand jour</p>
+  </div>
+
+  <div class="card progress-card">
+    <div class="prog-header">
+      <span>Préférences définies</span>
+      <span>{{ getSelected() }}/{{ prefs.length }}</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="(getSelected()/prefs.length)*100"></div>
+    </div>
+  </div>
+
+  <div class="saved-msg" *ngIf="saved"> Birth plan sauvegardé </div>
+
+  <div class="prefs-list">
+    <div class="pref-item card" *ngFor="let p of prefs">
+      <div class="pref-text">
+        <div class="pref-name">{{ p.label }}</div>
+        <div class="pref-desc">{{ p.desc }}</div>
+      </div>
+      <div class="pref-btns">
+        <button class="btn-yes" [class.sel]="p.value === true" (click)="p.value = true">✓</button>
+        <button class="btn-no"  [class.sel]="p.value === false" (click)="p.value = false">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-actions">
+    <button class="btn-save" (click)="save()"> Sauvegarder</button>
+  </div>
+</div>

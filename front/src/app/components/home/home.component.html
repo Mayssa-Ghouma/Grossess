@@ -1,0 +1,60 @@
+<div class="home">
+  <section class="hero-section">
+    <div class="hero-left">
+      <div class="week-badge">Semaine {{ currentWeek }} de votre grossesse</div>
+      <h1>Bonjour, <span class="pink">{{ prenom }}</span> </h1>
+      <p class="baby-size">
+        Votre bébé a la taille d'un <strong>{{ babySize }}</strong> {{ babyEmoji }}.
+        Plus que <strong>{{ weeksLeft }} semaines</strong> !
+      </p>
+      <div class="due-card">
+        <div class="due-col">
+          <div class="big-num">{{ weeksLeft }}</div>
+          <div class="lbl">semaines</div>
+        </div>
+        <div class="sep"></div>
+        <div class="due-col">
+          <div class="big-num">0</div>
+          <div class="lbl">jours</div>
+        </div>
+        <div class="due-info">
+          <div class="due-lbl">Date prévue</div>
+          <div class="due-date">{{ dueDate }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="circle">
+        <img src="assets/images/grosss (2).png" alt="Grossesse">
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-nav">
+    <div class="nav-item" (click)="router.navigate(['/contractions'])">
+      <div class="icon-box">
+        <img src="assets/images/contraction.png">
+      </div>
+      <span>Contractions</span>
+    </div>
+    <div class="nav-item" (click)="router.navigate(['/birth-plan'])">
+      <div class="icon-box">
+        <img src="assets/images/birth.png">
+      </div>
+      <span>Birth Plan</span>
+    </div>
+    <div class="nav-item" (click)="router.navigate(['/hospital-bag'])">
+      <div class="icon-box">
+        <img src="assets/images/bag.png">
+      </div>
+      <span>Hospital Bag</span>
+    </div>
+    <div class="nav-item" (click)="router.navigate(['/communaute-maman'])">
+      <div class="icon-box">
+        <img src="assets/images/communaute.png">
+      </div>
+      <span>Communauté</span>
+    </div>
+  </section>
+</div>

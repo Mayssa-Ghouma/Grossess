@@ -1,0 +1,49 @@
+<div class="page-container">
+
+  <!-- ALERTES -->
+  <div class="alert-box danger" *ngIf="showHospitalAlert">
+    🚨 Contractions rapprochées  <strong>Allez à l'hôpital maintenant !</strong>
+  </div>
+
+
+  <!-- TRACKER -->
+  <div class="tracker-card card">
+    <div class="timer" [class.running]="isRunning">{{ formatTime(elapsed) }}</div>
+    <p class="hint">{{ isRunning ? 'Contraction en cours...' : 'Appuyez sur démarrer quand la contraction commence' }}</p>
+    <div class="ctrl">
+      <button class="btn-start" *ngIf="!isRunning" (click)="start()">▶ Démarrer</button>
+      <button class="btn-stop" *ngIf="isRunning" (click)="stop()">⏹ Arrêter</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row" *ngIf="contractions.length > 0">
+    <div class="stat-card">
+      <div class="stat-num">{{ contractions.length }}</div>
+      <div class="stat-label">Contractions (24h)</div>
+    </div>
+  </div>
+
+  <!-- HISTORIQUE -->
+  <div *ngIf="contractions.length > 0">
+    <h2>Historique des dernières 24h</h2>
+    <div class="c-list">
+      <div class="c-item card" *ngFor="let c of contractions; let i = index">
+        <div class="c-num">#{{ contractions.length - i }}</div>
+        <div class="c-info">
+          <div class="c-dur">
+            Durée : <strong>{{ c.dureeSecondes }}s</strong>
+            <span class="c-badge" [class.long]="c.dureeSecondes >= 45">
+              {{ c.dureeSecondes >= 45 ? '⚠️ Longue' : 'Normale' }}
+            </span>
+          </div>
+          <div class="c-time">{{ formatHeure(c.debut) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="contractions.length === 0" class="empty">
+    Aucune contraction enregistrée dans les dernières 24h.
+  </div>
+</div>

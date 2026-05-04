@@ -1,0 +1,44 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="logo">♥</div>
+    <h2>Créer un compte</h2>
+    <p class="sub">Rejoignez la communauté Grossess'</p>
+
+    <div class="error-msg" *ngIf="error">{{ error }}</div>
+    <div class="success-msg" *ngIf="success">
+      Compte créé ! <a (click)="router.navigate(['/login'])">Se connecter</a>
+    </div>
+
+    <div class="role-row">
+      <button [class.active]="role==='maman'" (click)="role='maman'">Future Maman</button>
+      <button [class.active]="role==='gyneco'" (click)="role='gyneco'">Gynécologue</button>
+    </div>
+
+    <label>Nom complet</label>
+    <input class="form-input" [(ngModel)]="nomComplet" placeholder="Votre nom complet" />
+
+    <label>Email</label>
+    <input class="form-input" type="email" [(ngModel)]="email" placeholder="vous@exemple.com" />
+
+    <label>Mot de passe</label>
+    <input class="form-input" type="password" [(ngModel)]="motDePasse" placeholder="••••••••" />
+
+    <ng-container *ngIf="role === 'maman'">
+      <label>Date d'accouchement prévue</label>
+      <input class="form-input" type="date" [(ngModel)]="dateAccouchement" />
+
+      <label>Mois de grossesse actuel</label>
+      <input class="form-input" type="number" [(ngModel)]="moisGrossesse" min="1" max="9" style="margin-bottom:24px" />
+    </ng-container>
+
+    <div *ngIf="role==='gyneco'" style="margin-bottom:24px"></div>
+
+    <button class="btn-submit" (click)="register()" [disabled]="loading">
+      {{ loading ? 'Inscription...' : "S'inscrire" }}
+    </button>
+
+    <p class="link-text">
+      Déjà un compte ? <a (click)="router.navigate(['/login'])">Se connecter</a>
+    </p>
+  </div>
+</div>

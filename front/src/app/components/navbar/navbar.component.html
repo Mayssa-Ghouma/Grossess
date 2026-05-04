@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="brand" (click)="goHome()">
+    <span class="heart">♥</span>
+    <span>Grossess'</span>
+  </div>
+
+  <div class="links" *ngIf="isMaman">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a routerLink="/contractions" routerLinkActive="active">Contractions</a>
+    <a routerLink="/birth-plan" routerLinkActive="active">Birth Plan</a>
+    <a routerLink="/hospital-bag" routerLinkActive="active">Hospital Bag</a>
+    <a routerLink="/communaute-maman" routerLinkActive="active" class="btn-comm">Communauté</a>
+  </div>
+
+  <div class="links" *ngIf="isGyneco">
+    <a routerLink="/communaute-gyneco" routerLinkActive="active" class="btn-comm">Communauté</a>
+  </div>
+
+  <button class="btn-logout" (click)="logout()">→ Déconnexion</button>
+</nav>
